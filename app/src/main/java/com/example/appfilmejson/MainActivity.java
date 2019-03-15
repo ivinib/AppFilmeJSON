@@ -48,4 +48,25 @@ public class MainActivity extends AppCompatActivity {
                 });
             queue.add(stringRequest);
     }
+
+    public void baixarRAW(View view){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://my-json-server.typicode.com/ivinib/JSONFilmeAPP/filme";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        txtJSON.setText(response);
+                    }
+                },
+                    new Response.ErrorListener(){
+                        @Override
+                        public void onErrorResponse(VolleyError error){
+                            txtJSON.setText("Falha ao obter o RAW");
+                        }
+
+                });
+        queue.add(stringRequest);
+    }
 }
